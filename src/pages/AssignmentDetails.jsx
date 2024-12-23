@@ -5,8 +5,8 @@ import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { useParams } from "react-router-dom";
 
-const AssignmentDetails = ({ currentUserEmail }) => {
-  const { _id } = useParams();
+const AssignmentDetails = ({ currentUserEmail, loading,setLoading }) => {
+  const { id } = useParams();
   const [assignment, setAssignment] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [submissionData, setSubmissionData] = useState({
@@ -17,16 +17,25 @@ const AssignmentDetails = ({ currentUserEmail }) => {
   useEffect(() => {
     const fetchAssignment = async () => {
       try {
-        const { data } = await axios.get(`http://localhost:5000/assignments/${_id}`);
+        const { data } = await axios.get(`http://localhost:5000/assignment/${id}`);
         setAssignment(data);
       } catch (err) {
-        console.error(err);
-        toast.error("Failed to load assignment details.");
+        console.error("Error fetching assignment:", err);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchAssignment();
-  }, [_id]);
+  }, [id]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!assignment) {
+    return <div>Assignment not found</div>;
+  }
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;

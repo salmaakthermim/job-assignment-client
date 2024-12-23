@@ -1,37 +1,47 @@
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
+import { useState } from "react";
 import { toast } from "react-hot-toast";
 import { Link, useLoaderData } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 
 const AssignmentCard = ({ currentUserEmail }) => {
-  const {user} = useContext(AuthContext)
-  const assignments = useLoaderData();
-  // const assingmen, setAsingment = useState([])
+  const { user } = useContext(AuthContext);
+  const initialAssignments = useLoaderData(); 
+  const [assignments, setAssignments] = useState(initialAssignments);
   const [editingAssignment, setEditingAssignment] = useState(null);
-  // useEffect(() => {
-  //   feachAllAssignment()
-  // }, [user])
-  // const fetchAllAssignment = async () => {
-  //   const {data}= await axios.get(`http://localhost:5000/assignments/${user?.email}`)
-  //   setAsingment(data)
-  // }
 
-  // handel delete assignment
-  const handleDelete = async (id) => {
-    console.log(id)
+  // Fetch all assignments
+  const fetchAllAssignments = async () => {
     try {
-      const { data } = await axios.delete(`http://localhost:5000/assignments/${id}`);
-      console.log(data);
-      toast.success("Assignment deleted successfully!");
-      data()
+      const { data } = await axios.get(
+        `http://localhost:5000/assignments/${user?.email}`
+      );
+      console.log(data)
+      setAssignments(data);
     } catch (err) {
-      console.log(err);
+      console.error(err);
+      toast.error("Failed to fetch assignments.");
+    }
+  };
+
+  // Handle delete assignment
+  const handleDelete = async id => {
+    try {
+      const { data } = await axios.delete(
+        `http://localhost:5000/assignment/${id}`
+        
+      );
+      console.log(data)
+      toast.success("Assignment deleted successfully!");
+      fetchAllAssignments(); 
+    } catch (err) {
+      console.error(err);
       toast.error(err.message);
     }
   };
 
-  // handel update button 
+  // Handle update button
   const handleUpdate = (assignment) => {
     if (assignment.creatorEmail !== currentUserEmail) {
       toast.error("You can only update assignments you have created.");
@@ -40,28 +50,41 @@ const AssignmentCard = ({ currentUserEmail }) => {
     setEditingAssignment(assignment);
   };
 
-  // handle submission  updated assignment
+  // Handle submission of updated assignment
   const handleSubmitUpdate = async (e) => {
     e.preventDefault();
-
     try {
-      const { data } = await axios.put(`http://localhost:5000/assignments/${editingAssignment._id}`, editingAssignment);
-      toast.success( "Assignment updated successfully!");
+      const updatedData = {
+        title: editingAssignment.title,
+        marks: editingAssignment.marks,
+        difficulty: editingAssignment.difficulty,
+      };
+
+      const { data } = await axios.put(
+        `http://localhost:5000/assignment/${editingAssignment._id}`,
+        {
+          currentUserEmail,
+          updatedData,
+        }
+      );
+
+      console.log(data);
+      toast.success("Assignment updated successfully!");
       setEditingAssignment(null);
-      console.log(data)
-     
+      fetchAllAssignments();
     } catch (err) {
-      console.log(err);
+      console.error(err);
       toast.error("Failed to update the assignment.");
     }
-  };
+};
+
 
   return (
     <div className="container mx-auto p-4">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {assignments.map((assignment) => (
           <div
-            key={assignment.id}
+            key={assignment._id}
             className="card bg-base-100 shadow-md hover:shadow-lg transition-shadow duration-300"
           >
             <figure>
@@ -80,12 +103,15 @@ const AssignmentCard = ({ currentUserEmail }) => {
                 Difficulty: {assignment.difficulty}
               </p>
               <div className="card-actions justify-end mt-4">
-              <Link to={`/assignments/${assignment._id}`} className="btn btn-primary btn-sm">
+                <Link
+                  to={`/assignments/${assignment._id}`}
+                  className="btn btn-primary btn-sm"
+                >
                   View
                 </Link>
                 <button
                   className="btn btn-secondary btn-sm"
-                  onClick={() => handleUpdate(assignment._id)}
+                  onClick={() => handleUpdate(assignment)}
                 >
                   Update
                 </button>
@@ -115,7 +141,12 @@ const AssignmentCard = ({ currentUserEmail }) => {
                   type="text"
                   className="input input-bordered"
                   value={editingAssignment.title}
-                  onChange={(e) => setEditingAssignment({ ...editingAssignment, title: e.target.value })}
+                  onChange={(e) =>
+                    setEditingAssignment({
+                      ...editingAssignment,
+                      title: e.target.value,
+                    })
+                  }
                   required
                 />
               </div>
@@ -127,7 +158,12 @@ const AssignmentCard = ({ currentUserEmail }) => {
                   type="number"
                   className="input input-bordered"
                   value={editingAssignment.marks}
-                  onChange={(e) => setEditingAssignment({ ...editingAssignment, marks: e.target.value })}
+                  onChange={(e) =>
+                    setEditingAssignment({
+                      ...editingAssignment,
+                      marks: e.target.value,
+                    })
+                  }
                   required
                 />
               </div>
@@ -139,12 +175,19 @@ const AssignmentCard = ({ currentUserEmail }) => {
                   type="text"
                   className="input input-bordered"
                   value={editingAssignment.difficulty}
-                  onChange={(e) => setEditingAssignment({ ...editingAssignment, difficulty: e.target.value })}
+                  onChange={(e) =>
+                    setEditingAssignment({
+                      ...editingAssignment,
+                      difficulty: e.target.value,
+                    })
+                  }
                   required
                 />
               </div>
               <div className="modal-action">
-                <button type="submit" className="btn btn-primary">Save Changes</button>
+                <button type="submit" className="btn btn-primary">
+                  Save Changes
+                </button>
                 <button
                   type="button"
                   className="btn"
@@ -162,3 +205,4 @@ const AssignmentCard = ({ currentUserEmail }) => {
 };
 
 export default AssignmentCard;
+

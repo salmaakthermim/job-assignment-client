@@ -1,14 +1,17 @@
 
 import axios from 'axios';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { toast } from 'react-hot-toast';
+import AuthContext from '../context/AuthContext';
 
 const CreateAssignment = () => {
+    const { user } = useContext(AuthContext);
     
     const [formData, setFormData] = useState({
         title: '',
+        email: user.email,
         description: '',
         marks: '',
         thumbnail: '',
@@ -29,10 +32,10 @@ const CreateAssignment = () => {
         e.preventDefault();
         try {
             const response = await axios.post('http://localhost:5000/assignments', formData);
-            toast('Assignment created successfully');
+            toast.success('Assignment created successfully');
             console.log(response.data);
         } catch (error) {
-            toast.success('Error creating assignment');
+            toast.error('Error creating assignment');
             console.error(error);
         }
     };
