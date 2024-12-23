@@ -27,9 +27,10 @@ const AuthProvider = ({children}) => {
         return signInWithPopup(auth, googleProvider)
     }
     const logOut = async () => {
-        setLoading(true)
-        return signOut(auth)
-      }
+        setLoading(true);
+        await signOut(auth);
+        setLoading(false);
+      };
 
       const updateUserProfile = (name, photo) => {
         return updateProfile(auth.currentUser, {
