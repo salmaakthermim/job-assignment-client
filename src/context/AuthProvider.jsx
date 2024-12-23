@@ -1,10 +1,7 @@
-// import React, { useEffect, useState } from 'react';
-// import AuthContext from './AuthContext';
 
-// import { GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import { useEffect, useState } from 'react';
 import auth from '../firbase/firbase.init';
-// import { useEffect, useState } from 'react';
+
 import AuthContext from './AuthContext';
 import { GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 

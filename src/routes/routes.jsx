@@ -10,6 +10,7 @@ import Register from "../pages/Authentication/Register";
 import CreateAssignment from "../pages/CreateAssignment";
 import AssignmentCard from "../pages/AssignmentCard";
 import Home from "../pages/Home";
+import AssignmentDetails from "../pages/AssignmentDetails";
   const router = createBrowserRouter([
     {
       path: "/",
@@ -29,6 +30,11 @@ import Home from "../pages/Home";
           element: <AssignmentCard></AssignmentCard>,
           loader: () => fetch('http://localhost:5000/assignments')
         },
+        {
+          path: '/assignments/:id',
+          element: <AssignmentDetails></AssignmentDetails>
+        },
+        
         {
             path: '/login',
             element: <Login></Login>

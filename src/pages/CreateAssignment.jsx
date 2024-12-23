@@ -3,8 +3,10 @@ import axios from 'axios';
 import { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { toast } from 'react-hot-toast';
 
 const CreateAssignment = () => {
+    
     const [formData, setFormData] = useState({
         title: '',
         description: '',
@@ -27,10 +29,10 @@ const CreateAssignment = () => {
         e.preventDefault();
         try {
             const response = await axios.post('http://localhost:5000/assignments', formData);
-            alert('Assignment created successfully');
+            toast('Assignment created successfully');
             console.log(response.data);
         } catch (error) {
-            alert('Error creating assignment');
+            toast.success('Error creating assignment');
             console.error(error);
         }
     };
