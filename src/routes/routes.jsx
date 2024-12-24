@@ -11,6 +11,9 @@ import CreateAssignment from "../pages/CreateAssignment";
 import AssignmentCard from "../pages/AssignmentCard";
 import Home from "../pages/Home";
 import AssignmentDetails from "../pages/AssignmentDetails";
+import MyAssignmentsPage from "../pages/MyAssignmentsPage";
+import PendingAssignmentsPage from "../pages/PendingAssignmentsPage";
+
   const router = createBrowserRouter([
     {
       path: "/",
@@ -33,6 +36,14 @@ import AssignmentDetails from "../pages/AssignmentDetails";
         {
           path: '/assignments/:id',
           element: <AssignmentDetails></AssignmentDetails>
+        },
+        {
+          path: '/my-attempted-assignments',
+          element: <MyAssignmentsPage></MyAssignmentsPage>
+        },
+        {
+          path: '/pending-assignments',
+          element: <PendingAssignmentsPage></PendingAssignmentsPage>
         },
         
         {

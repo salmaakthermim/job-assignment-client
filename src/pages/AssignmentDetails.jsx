@@ -1,17 +1,21 @@
 
 
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { useParams } from "react-router-dom";
+import AuthContext from "../context/AuthContext";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const AssignmentDetails = ({ currentUserEmail, loading,setLoading }) => {
+  const { user } = useContext(AuthContext);
   const { id } = useParams();
   const [assignment, setAssignment] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [submissionData, setSubmissionData] = useState({
     googleDocsLink: "",
     quickNote: "",
+    email: user.email,
   });
 
   useEffect(() => {
@@ -51,6 +55,7 @@ const AssignmentDetails = ({ currentUserEmail, loading,setLoading }) => {
       assignmentId: id,
       userEmail: currentUserEmail,
       status: "Pending",
+      assignment:'title',
     };
 
     try {
@@ -63,7 +68,7 @@ const AssignmentDetails = ({ currentUserEmail, loading,setLoading }) => {
     }
   };
 
-  if (!assignment) return <p>Loading...</p>;
+  if (!assignment) return <LoadingSpinner></LoadingSpinner>;
 
   return (
     <div className="container mx-auto p-4">

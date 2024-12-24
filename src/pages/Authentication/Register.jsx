@@ -4,8 +4,9 @@ import Lottie from 'lottie-react'
 import RegisterLottieData from '../../assets/lottie/register.json'; 
 import { toast } from 'react-hot-toast';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import auth from '../../firbase/firbase.init';
+// import auth from '../../firbase/firbase.init';
 import { useNavigate } from 'react-router-dom';
+import { auth } from '../../firbase/firbase.init';
 
 
 const Register = () => {

@@ -15,8 +15,10 @@ const AssignmentCard = ({ currentUserEmail }) => {
   const fetchAllAssignments = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:5000/assignments/${user?.email}`
-      );
+        `http://localhost:5000/assignments/${user?.email}`, {
+          withCredentials: true
+
+        })
       console.log(data)
       setAssignments(data);
     } catch (err) {
@@ -81,7 +83,7 @@ const AssignmentCard = ({ currentUserEmail }) => {
 
   return (
     <div className="container mx-auto p-4">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 gap-6">
         {assignments.map((assignment) => (
           <div
             key={assignment._id}
@@ -102,21 +104,21 @@ const AssignmentCard = ({ currentUserEmail }) => {
               <p className="text-sm text-gray-600">
                 Difficulty: {assignment.difficulty}
               </p>
-              <div className="card-actions justify-end mt-4">
+              <div className="card-actions mt-4">
                 <Link
                   to={`/assignments/${assignment._id}`}
-                  className="btn btn-primary btn-sm"
+                  className="btn btn-primary "
                 >
                   View
                 </Link>
                 <button
-                  className="btn btn-secondary btn-sm"
+                  className="btn btn-secondary "
                   onClick={() => handleUpdate(assignment)}
                 >
                   Update
                 </button>
                 <button
-                  className="btn btn-error btn-sm"
+                  className="btn btn-error "
                   onClick={() => handleDelete(assignment._id)}
                 >
                   Delete

@@ -4,7 +4,9 @@ import loginLottieJSON from '../../assets/lottie/login.json';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
-import auth from '../../firbase/firbase.init';
+import { auth } from '../../firbase/firbase.init';
+import SocialLogin from './SocialLogin';
+// import auth from '../../firbase/firbase.init';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -25,16 +27,16 @@ const Login = () => {
         }
     };
 
-    const handleGoogleSignIn = async () => {
-        try {
-            await signInWithPopup(auth, googleProvider);
-            toast.success('Google login successful!');
-            navigate('/');
-        } catch (error) {
-            toast.error('Google login failed.');
-            console.error(error);
-        }
-    };
+    // const handleGoogleSignIn = async () => {
+    //     try {
+    //         await signInWithPopup(auth, googleProvider);
+    //         toast.success('Google login successful!');
+    //         navigate('/');
+    //     } catch (error) {
+    //         toast.error('Google login failed.');
+    //         console.error(error);
+    //     }
+    // };
 
     return (
         <div>
@@ -87,16 +89,17 @@ const Login = () => {
                                 <button className="btn btn-primary">Login</button>
                             </div>
                         </form>
+                        <SocialLogin></SocialLogin>
 
                       
-                        <div className="form-control mt-4">
+                        {/* <div className="form-control mt-4">
                             <button
                                 onClick={handleGoogleSignIn}
                                 className="btn btn-secondary"
                             >
                                 Login with Google
                             </button>
-                        </div>
+                        </div> */}
 
                        
                         <p className="text-center text-sm text-gray-500 mt-4">

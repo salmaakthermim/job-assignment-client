@@ -1,9 +1,11 @@
 
 import { useEffect, useState } from 'react';
-import auth from '../firbase/firbase.init';
+// import auth from '../firbase/firbase.init';
 
 import AuthContext from './AuthContext';
 import { GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
+import { auth } from '../firbase/firbase.init';
+import axios from 'axios';
 
 
 const googleProvider = new GoogleAuthProvider
@@ -47,8 +49,28 @@ const AuthProvider = ({children}) => {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
-            console.log('state captured', currentUser)
-            setLoading(false)
+            console.log('state captured', currentUser?.email)
+            if(currentUser?.email) {
+                const user = { email: currentUser.email };
+
+                axios.post('http://localhost:5000/jwt', user, {
+                    withCredentials: true
+                })
+                .then(res => {
+                    console.log('login token',res.data)
+                    setLoading(false)
+                })
+            }
+            else {
+                axios.post('http://localhost:5000/logout', {}, {
+                    withCredentials: true
+                })
+                .then(res => {
+                    console.log('logout', res.data)
+                    setLoading(false)
+                })
+            }
+            
         })
         return() => {
             unsubscribe();
