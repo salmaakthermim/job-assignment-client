@@ -55,7 +55,8 @@ const AssignmentDetails = ({ currentUserEmail, loading,setLoading }) => {
       assignmentId: id,
       userEmail: currentUserEmail,
       status: "Pending",
-      assignment:'title',
+      assignment:assignment.title,
+      marks:assignment.marks,
     };
 
     try {

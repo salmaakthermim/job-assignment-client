@@ -23,7 +23,8 @@ function PendingAssignments() {
 
     const handleMarkAssignment = (assignment) => {
         // Navigate to a detailed marking page or open a modal with assignment details
-        console.log("Mark assignment:", assignment);
+        // console.log("Mark assignment:", assignment);
+        GiveMarkModal()
     };
 
     return (

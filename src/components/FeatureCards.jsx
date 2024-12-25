@@ -35,7 +35,7 @@ const FeatureCards = () => {
         {features.map((feature, index) => (
           <div
             key={index}
-            className="card bg-white shadow-md hover:shadow-lg transition-shadow duration-300 rounded-lg overflow-hidden"
+            className="card  shadow-md hover:shadow-lg transition-shadow duration-300 rounded-lg overflow-hidden"
           >
             <img
               src={feature.image}

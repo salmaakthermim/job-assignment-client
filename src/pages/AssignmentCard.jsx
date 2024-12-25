@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
 import { Link, useLoaderData } from "react-router-dom";
@@ -8,13 +8,15 @@ import AuthContext from "../context/AuthContext";
 const AssignmentCard = ({ currentUserEmail }) => {
   const { user } = useContext(AuthContext);
   const initialAssignments = useLoaderData(); 
-  const [assignments, setAssignments] = useState(initialAssignments);
+  const [assignments, setAssignments] = useState(initialAssignments||[]);
   const [editingAssignment, setEditingAssignment] = useState(null);
+  const [difficulty, setDifficulty] = useState('');
+  const [search, setSearch] = useState('');
 
   // Fetch all assignments
   const fetchAllAssignments = async () => {
     try {
-      const { data } = await axios.get(
+      const { data }  = await axios.get(
         `http://localhost:5000/assignments/${user?.email}`, {
           withCredentials: true
 
@@ -27,6 +29,27 @@ const AssignmentCard = ({ currentUserEmail }) => {
     }
   };
 
+    // Fetch assignments with filters
+    const fetchFilteredAssignments = async () => {
+      try {
+        const { data } = await axios.get(`http://localhost:5000/assignments`, {
+          params: {
+            difficulty,
+            search,
+          },
+          withCredentials: true,
+        });
+        setAssignments(data);
+      } catch (err) {
+        console.error(err);
+        toast.error("Failed to fetch assignments.");
+      }
+    };
+  
+    useEffect(() => {
+      fetchFilteredAssignments();
+    }, [difficulty, search]);
+
   // Handle delete assignment
   const handleDelete = async id => {
     try {
@@ -36,7 +59,7 @@ const AssignmentCard = ({ currentUserEmail }) => {
       );
       console.log(data)
       toast.success("Assignment deleted successfully!");
-      fetchAllAssignments(); 
+      fetchAllAssignments() 
     } catch (err) {
       console.error(err);
       toast.error(err.message);
@@ -83,8 +106,30 @@ const AssignmentCard = ({ currentUserEmail }) => {
 
   return (
     <div className="container mx-auto p-4">
+         <div className="flex items-center gap-4 mb-6">
+        {/* Filter by Difficulty */}
+        <select
+          value={difficulty}
+          onChange={(e) => setDifficulty(e.target.value)}
+          className="select select-bordered"
+        >
+          <option value="">All</option>
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+        </select>
+
+        {/* Search Bar */}
+        <input
+          type="text"
+          placeholder="Search by title"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="input input-bordered"
+        />
+      </div>
       <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {assignments.map((assignment) => (
+        {Array.isArray(assignments) && assignments?.map((assignment) => (
           <div
             key={assignment._id}
             className="card bg-base-100 shadow-md hover:shadow-lg transition-shadow duration-300"

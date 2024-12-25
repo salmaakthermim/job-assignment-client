@@ -36,7 +36,7 @@ const MyAssignmentsPage = () => {
     }
     return (
         <div className="container mx-auto p-4">
-            <h1 className="text-2xl font-semibold">My Submitted Assignments</h1>
+            <h1 className="text-2xl font-semibold">My Submitted Assignments: {submissions.length}</h1>
             {submissions.length > 0 ? (
                 <table className="min-w-full mt-4 border-collapse">
                     <thead>
@@ -51,10 +51,10 @@ const MyAssignmentsPage = () => {
                     <tbody>
                         {submissions.map((submission) => (
                             <tr key={submission._id}>
-                                <td className="py-2 px-4 border-b">{submission.assignmentTitle}</td>
+                                <td className="py-2 px-4 border-b">{submission.assignment}</td>
                                 <td className="py-2 px-4 border-b">{submission.status}</td>
-                                <td className="py-2 px-4 border-b">{submission.totalMarks}</td>
-                                <td className="py-2 px-4 border-b">{submission.obtainedMarks}</td>
+                                <td className="py-2 px-4 border-b">{submission.marks}</td>
+                                <td className="py-2 px-4 border-b">{submission.marks}</td>
                                 <td className="py-2 px-4 border-b">{submission.feedback || 'No feedback yet'}</td>
                             </tr>
                         ))}

@@ -4,6 +4,7 @@ import { Link, NavLink, useNavigate } from 'react-router-dom';
 import AuthContext from '../context/AuthContext';
 import { useContext, useState } from 'react';
 import Logo from '../../public/logo.jpg';
+import ThemeToggle from './ThemeToggle';
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -134,7 +135,9 @@ const Navbar = () => {
                 Login
               </NavLink>
             )}
+            {/* <ThemeToggle></ThemeToggle> */}
           </div>
+          
         </div>
       </nav>
     </div>
