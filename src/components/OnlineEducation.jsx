@@ -3,7 +3,7 @@ import React from 'react';
 const OnlineEducation = () => {
     return (
         <div>
-            <div className="flex flex-col md:flex-row md:gap-10 p-8 bg-white "  data-aos="fade-up">
+            <div className="flex flex-col md:flex-row md:gap-10 p-8  "  data-aos="fade-up">
                 <div className="md:w-1/2 "  >
                     <div className="relative">
                         <div className="absolute  left-0   text-black rounded-bl-lg p-4">

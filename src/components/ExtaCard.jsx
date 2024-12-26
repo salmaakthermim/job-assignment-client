@@ -4,7 +4,7 @@ import { Fade } from 'react-awesome-reveal';
 const ExtaCard = () => {
     return (
         <div>
-            <section class="bg-white py-16 px-6" >
+            <section class=" py-16 px-6" >
   <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 items-center gap-8">
     {/* <!-- Text Content --> */}
     <div>
