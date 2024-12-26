@@ -34,6 +34,7 @@ const FeatureCards = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {features.map((feature, index) => (
           <div
+         
             key={index}
             className="card  shadow-md hover:shadow-lg transition-shadow duration-300 rounded-lg overflow-hidden"
           >

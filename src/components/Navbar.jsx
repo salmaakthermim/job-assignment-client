@@ -29,13 +29,13 @@ const Navbar = () => {
 
   return (
     <div>
-      <nav className="bg-blue-500 text-white shadow-lg">
-        <div className="container mx-auto flex justify-between items-center py-4 px-6">
+      <nav className="  ">
+        <div className="container mx-auto flex justify-between items-center  px-6">
           {/* Website Logo and Name */}
           <div className="flex items-center gap-4">
             <img className="h-12 w-12 rounded-full" src={Logo} alt="Logo" />
             <div className="text-2xl font-bold">
-              <Link to="/">Online Group-Study</Link>
+              <Link >Online Group-Study</Link>
             </div>
           </div>
 
@@ -68,10 +68,13 @@ const Navbar = () => {
               menuOpen ? 'block' : 'hidden'
             }`}
           >
+            <NavLink to="/">
+              <button className='hover:text-purple-300'>Home</button>
+            </NavLink>
             <NavLink
               to="/assignments"
               className={({ isActive }) =>
-                `hover:text-gray-200 ${isActive ? 'text-gray-300' : ''}`
+                `hover:text-purple-300 ${isActive ? 'text-gray-300' : ''}`
               }
             >
               Assignments
@@ -83,7 +86,7 @@ const Navbar = () => {
                 <NavLink
                   to="/pending-assignments"
                   className={({ isActive }) =>
-                    `hover:text-gray-200 ${isActive ? 'text-gray-300' : ''}`
+                    `hover:text-purple-300 ${isActive ? 'text-gray-300' : ''}`
                   }
                 >
                   Pending Assignments

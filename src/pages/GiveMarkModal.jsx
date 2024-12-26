@@ -2,7 +2,8 @@
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../firbase/firbase.init";
 import { useNavigate, useParams } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 
 

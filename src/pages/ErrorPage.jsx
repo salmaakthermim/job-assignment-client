@@ -48,7 +48,7 @@ const ErrorPage = () => {
                     <div className='relative w-full mt-8 lg:w-1/2 lg:mt-0'>
                         <img
                             className=' w-full lg:h-[32rem] h-80 md:h-96 rounded-lg object-cover '
-                            src='https://ibb.co.com/qkPS1Tj'
+                            src='https://i.ibb.co.com/6vvJ9nv/images.png'
                             alt=''
                         />
                     </div>

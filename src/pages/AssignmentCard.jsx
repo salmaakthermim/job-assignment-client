@@ -53,18 +53,40 @@ const AssignmentCard = ({ currentUserEmail }) => {
   // Handle delete assignment
   const handleDelete = async id => {
     try {
-      const { data } = await axios.delete(
+      const  data  = await axios.delete(
         `http://localhost:5000/assignment/${id}`
         
       );
       console.log(data)
       toast.success("Assignment deleted successfully!");
-      fetchAllAssignments() 
+      fetchFilteredAssignments()
     } catch (err) {
       console.error(err);
       toast.error(err.message);
     }
   };
+
+  const modernDelete = (id) =>{
+    toast(
+      (t) => (
+        <div className="flex items-center gap-3">
+          <div><p>Are you <b>sure?</b></p></div>
+          <div>
+            <button className="bg-red-400 text-white px-3 py-1 rounded-md" onClick={() => {
+              toast.dismiss(t.id)
+              handleDelete(id)
+              
+              }}>yes</button>
+            <button className="bg-green-400 text-white px-3 py-1 rounded-md" onClick={() => toast.dismiss(t.id)}>Cancel</button>
+          </div>
+      
+        </div>
+      )
+     
+    );
+  }
+
+ 
 
   // Handle update button
   const handleUpdate = (assignment) => {
@@ -149,22 +171,22 @@ const AssignmentCard = ({ currentUserEmail }) => {
               <p className="text-sm text-gray-600">
                 Difficulty: {assignment.difficulty}
               </p>
-              <div className="card-actions mt-4">
+              <div className=" gap-5 mt-4 flex">
                 <Link
                   to={`/assignments/${assignment._id}`}
-                  className="btn btn-primary "
+                  className="bg-gradient-to-r from-pink-500 to-blue-500 text-white font-bold py-2 px-4 rounded shadow-lg hover:from-pink-600 hover:to-blue-600 transition duration-300" 
                 >
                   View
                 </Link>
                 <button
-                  className="btn btn-secondary "
+                  className="bg-gradient-to-r from-purple-600 to-purple-400 text-white font-bold py-2 px-4 rounded shadow transition duration-300 hover:shadow-lg hover:scale-105 "
                   onClick={() => handleUpdate(assignment)}
                 >
                   Update
                 </button>
                 <button
-                  className="btn btn-error "
-                  onClick={() => handleDelete(assignment._id)}
+                  className="bg-gradient-to-r from-blue-500 to-green-500 text-white py-2 px-4 rounded "
+                  onClick={() => modernDelete(assignment._id)}
                 >
                   Delete
                 </button>

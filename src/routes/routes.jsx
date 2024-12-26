@@ -14,6 +14,8 @@ import AssignmentDetails from "../pages/AssignmentDetails";
 import MyAssignmentsPage from "../pages/MyAssignmentsPage";
 import PendingAssignmentsPage from "../pages/PendingAssignmentsPage";
 import PrivateRoute from "./PrivetRoutes";
+import GiveMarkModal from "../pages/GiveMarkModal";
+
 
   const router = createBrowserRouter([
     {
@@ -42,11 +44,19 @@ import PrivateRoute from "./PrivetRoutes";
         },
         {
           path: '/my-attempted-assignments',
-          element: <MyAssignmentsPage></MyAssignmentsPage>
+          element: <PrivateRoute>
+            <MyAssignmentsPage></MyAssignmentsPage>
+          </PrivateRoute>
         },
         {
           path: '/pending-assignments',
-          element: <PendingAssignmentsPage></PendingAssignmentsPage>
+          element: <PrivateRoute>
+            <PendingAssignmentsPage></PendingAssignmentsPage>
+          </PrivateRoute>
+        },
+        {
+          path: '/give-mark-modal',
+          element: <GiveMarkModal></GiveMarkModal>
         },
         
         {
