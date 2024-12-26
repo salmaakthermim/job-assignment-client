@@ -36,7 +36,7 @@ const GiveMarkModal = () => {
   
     const handleSubmit = async () => {
       try {
-          await axios.put(`http://localhost:5000/submissions/${assignment._id}/mark`, {
+          await axios.put(`https://job-assessment-server.vercel.app/submissions/${assignment._id}/mark`, {
               marks,
               feedback,
               examinerEmail: user.email, // Replace with actual logged-in user email

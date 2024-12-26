@@ -21,7 +21,7 @@ const AssignmentDetails = ({ currentUserEmail, loading,setLoading }) => {
   useEffect(() => {
     const fetchAssignment = async () => {
       try {
-        const { data } = await axios.get(`http://localhost:5000/assignment/${id}`);
+        const { data } = await axios.get(`https://job-assessment-server.vercel.app/assignment/${id}`);
         setAssignment(data);
       } catch (err) {
         console.error("Error fetching assignment:", err);
@@ -60,7 +60,7 @@ const AssignmentDetails = ({ currentUserEmail, loading,setLoading }) => {
     };
 
     try {
-      const { data } = await axios.post("http://localhost:5000/submissions", submission);
+      const { data } = await axios.post("https://job-assessment-server.vercel.app/submissions", submission);
       toast.success(data.message || "Assignment submitted successfully!");
       setModalOpen(false);
     } catch (err) {

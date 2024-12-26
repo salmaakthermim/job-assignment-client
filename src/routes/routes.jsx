@@ -36,7 +36,7 @@ import GiveMarkModal from "../pages/GiveMarkModal";
         {
           path: '/assignments',
           element: <AssignmentCard></AssignmentCard>,
-          loader: () => fetch('http://localhost:5000/assignments')
+          loader: () => fetch('https://job-assessment-server.vercel.app/assignments')
         },
         {
           path: '/assignments/:id',
