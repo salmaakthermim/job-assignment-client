@@ -138,7 +138,7 @@ const Navbar = () => {
                 Login
               </NavLink>
             )}
-            {/* <ThemeToggle></ThemeToggle> */}
+            <ThemeToggle></ThemeToggle>
           </div>
           
         </div>
