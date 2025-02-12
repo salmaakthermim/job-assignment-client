@@ -17,7 +17,7 @@ const AssignmentCard = ({ currentUserEmail }) => {
   const fetchAllAssignments = async () => {
     try {
       const { data }  = await axios.get(
-        `http://localhost:5000/assignments/${user?.email}`, {
+        `https://job-assessment-server.vercel.app/assignments/${user?.email}`, {
           withCredentials: true
 
         })
@@ -32,7 +32,7 @@ const AssignmentCard = ({ currentUserEmail }) => {
     // Fetch assignments with filters
     const fetchFilteredAssignments = async () => {
       try {
-        const { data } = await axios.get(`http://localhost:5000/assignments`, {
+        const { data } = await axios.get(`https://job-assessment-server.vercel.app/assignments`, {
           params: {
             difficulty,
             search,
@@ -54,7 +54,7 @@ const AssignmentCard = ({ currentUserEmail }) => {
   const handleDelete = async id => {
     try {
       const  data  = await axios.delete(
-        `http://localhost:5000/assignment/${id}`
+        `https://job-assessment-server.vercel.app/assignment/${id}`
         
       );
       console.log(data)
@@ -108,7 +108,7 @@ const AssignmentCard = ({ currentUserEmail }) => {
       };
 
       const { data } = await axios.put(
-        `http://localhost:5000/assignment/${editingAssignment._id}`,
+        `https://job-assessment-server.vercel.app/assignment/${editingAssignment._id}`,
         {
           currentUserEmail,
           updatedData,
@@ -128,7 +128,7 @@ const AssignmentCard = ({ currentUserEmail }) => {
 
   return (
     <div className="container mx-auto p-4">
-         <div className="flex items-center gap-4 mb-6">
+         <div className="flex items-center gap-4 ">
         {/* Filter by Difficulty */}
         <select
           value={difficulty}
@@ -150,7 +150,7 @@ const AssignmentCard = ({ currentUserEmail }) => {
           className="input input-bordered"
         />
       </div>
-      <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 mt-20 gap-6">
         {Array.isArray(assignments) && assignments?.map((assignment) => (
           <div
             key={assignment._id}

@@ -31,7 +31,7 @@ const CreateAssignment = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:5000/assignments', formData);
+            const response = await axios.post('https://job-assessment-server.vercel.app/assignments', formData);
             toast.success('Assignment created successfully');
             console.log(response.data);
         } catch (error) {
