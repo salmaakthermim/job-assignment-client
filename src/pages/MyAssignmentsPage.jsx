@@ -13,7 +13,7 @@ const MyAssignmentsPage = () => {
         const fetchSubmissions = async () => {
             try {
                 
-                const data = await axios.get(`https://job-assessment-server.vercel.app/submissions/${user?.email}`);
+                const data = await axios.get(`http://localhost:5000/submissions/${user?.email}`);
                 console.log(data)
                 
                 

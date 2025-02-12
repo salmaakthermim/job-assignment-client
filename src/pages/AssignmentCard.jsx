@@ -17,7 +17,7 @@ const AssignmentCard = ({ currentUserEmail }) => {
   const fetchAllAssignments = async () => {
     try {
       const { data }  = await axios.get(
-        `https://job-assessment-server.vercel.app/assignments/${user?.email}`, {
+        `http://localhost:5000/assignments/${user?.email}`, {
           withCredentials: true
 
         })
@@ -32,7 +32,7 @@ const AssignmentCard = ({ currentUserEmail }) => {
     // Fetch assignments with filters
     const fetchFilteredAssignments = async () => {
       try {
-        const { data } = await axios.get(`https://job-assessment-server.vercel.app/assignments`, {
+        const { data } = await axios.get(`http://localhost:5000/assignments`, {
           params: {
             difficulty,
             search,
@@ -54,7 +54,7 @@ const AssignmentCard = ({ currentUserEmail }) => {
   const handleDelete = async id => {
     try {
       const  data  = await axios.delete(
-        `https://job-assessment-server.vercel.app/assignment/${id}`
+        `http://localhost:5000/assignment/${id}`
         
       );
       console.log(data)
@@ -108,7 +108,7 @@ const AssignmentCard = ({ currentUserEmail }) => {
       };
 
       const { data } = await axios.put(
-        `https://job-assessment-server.vercel.app/assignment/${editingAssignment._id}`,
+        `http://localhost:5000/assignment/${editingAssignment._id}`,
         {
           currentUserEmail,
           updatedData,

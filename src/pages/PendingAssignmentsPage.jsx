@@ -13,7 +13,7 @@ function PendingAssignments() {
         const fetchPendingAssignments = async () => {
             try {
                 const response = await axios.get(
-                    `https://job-assessment-server.vercel.app/pending-assignments?userEmail=${user?.email}`
+                    `http://localhost:5000/pending-assignments?userEmail=${user?.email}`
                 );
                 setAssignments(response.data);
             } catch (error) {
@@ -30,7 +30,7 @@ function PendingAssignments() {
 
     const handleSubmitMarks = async (marks, feedback) => {
         try {
-            await axios.post(`https://job-assessment-server.vercel.app/submissions/${assignment._id}/mark`, {
+            await axios.post(`http://localhost:5000/submissions/${assignment._id}/mark`, {
                 assignmentId: selectedAssignment._id,
                 marks,
                 feedback,
