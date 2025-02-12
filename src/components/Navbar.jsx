@@ -44,7 +44,7 @@ const Navbar = () => {
         {/* Logo & Name */}
         <div className="flex items-center gap-4">
           <img className="h-12 w-12 rounded-full" src={Logo} alt="Logo" />
-          <Link to="/" className="text-2xl font-bold">
+          <Link to="/" className="text-2xl text-black font-bold">
             Online Group-Study
           </Link>
         </div>
@@ -78,17 +78,17 @@ const Navbar = () => {
 
         {/* Navigation Links */}
         <div
-          className={`md:flex items-center gap-6 absolute md:static top-16  md:w-auto bg-slate-400 md:bg-transparent p-4 md:p-0 transition-all duration-300 ${
+          className={`md:flex items-center gap-6 absolute md:static top-16  md:w-auto  md:bg-transparent p-4 md:p-0 transition-all duration-300 ${
             menuOpen ? "block" : "hidden"
           }`}
         >
-          <NavLink to="/" className="hover:text-purple-300">
+          <NavLink to="/" className="hover:text-purple-600 text-black">
             Home
           </NavLink>
           <NavLink
             to="/assignments"
             className={({ isActive }) =>
-              `hover:text-purple-300 ${isActive ? "text-gray-300" : ""}`
+              `hover:text-purple-600 text-black ${isActive ? "text-gray-300" : ""}`
             }
           >
             Assignments
@@ -99,7 +99,7 @@ const Navbar = () => {
               <NavLink
                 to="/pending-assignments"
                 className={({ isActive }) =>
-                  `hover:text-purple-300 ${isActive ? "text-gray-300" : ""}`
+                  `hover:text-purple-600 text-black ${isActive ? "text-gray-300" : ""}`
                 }
               >
                 Pending Assignments
@@ -122,19 +122,19 @@ const Navbar = () => {
                     </div>
                     <NavLink
                       to="/create-assignment"
-                      className="block px-4 py-2 hover:bg-gray-100"
+                      className="block px-4 py-2 text-black hover:bg-gray-100"
                     >
                       Create Assignment
                     </NavLink>
                     <NavLink
                       to="/my-attempted-assignments"
-                      className="block px-4 py-2 hover:bg-gray-100"
+                      className="block px-4 py-2 text-black hover:bg-gray-100"
                     >
                       My Attempted Assignments
                     </NavLink>
                     <button
                       onClick={handleLogout}
-                      className="w-full text-left px-4 py-2 text-red-500 hover:bg-gray-100"
+                      className="w-full text-left px-4  py-2 text-red-500 hover:bg-gray-100"
                     >
                       Logout
                     </button>

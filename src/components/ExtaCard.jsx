@@ -8,7 +8,7 @@ const ExtaCard = () => {
   <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 items-center gap-8">
     {/* <!-- Text Content --> */}
     <div>
-      <h1 class="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
+      <h1 class="text-4xl md:text-5xl font-bold  leading-tight">
         Welcome to online <span class="text-orange-500">
           <Fade delay={1e3} cascade damping={1e-1}>
           learning center
@@ -16,7 +16,7 @@ const ExtaCard = () => {
           
           </span>
       </h1>
-      <p class="mt-4 text-gray-600 text-lg leading-relaxed">
+      <p class="mt-4 text-lg leading-relaxed">
         There are many variations of passages of lorem ipsum available, but the majority have suffered alteration in some form by injected humour or randomised words which don’t look.
       </p>
       <div class="mt-8 flex items-center space-x-8">
@@ -24,13 +24,13 @@ const ExtaCard = () => {
           <svg class="w-8 h-8 text-teal-500" xmlns="https://i.ibb.co.com/KhScLRs/download.jpg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0v5m0 0l-3-3m3 3l3-3" />
           </svg>
-          <p class="text-gray-700 font-medium">Start learning from our experts</p>
+          <p class=" font-medium">Start learning from our experts</p>
         </div>
         <div class="flex items-center space-x-3">
           <svg class="w-8 h-8 text-teal-500" xmlns="https://i.ibb.co.com/KhScLRs/download.jpg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16l2-2-2-2m8 0l-2 2 2 2m-6-2h.01M6 18a9 9 0 0118 0v1H6v-1z" />
           </svg>
-          <p class="text-gray-700 font-medium">Enhance your skills with us now</p>
+          <p class=" font-medium">Enhance your skills with us now</p>
         </div>
       </div>
       <div class="mt-8">

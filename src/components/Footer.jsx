@@ -1,88 +1,62 @@
-import React from 'react';
-
+import { FaFacebook, FaTwitter } from "react-icons/fa";
 const Footer = () => {
-    return (
+  return (
+    <footer className="bg-gray-900 text-gray-300 py-10">
+      <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* Logo & Description */}
         <div>
-               <footer className="bg-gray-900 text-gray-100 py-10">
-      <div className="container mx-auto px-6 md:px-10">
-        <div className="flex flex-col md:flex-row justify-between gap-8">
-          {/* Company Info */}
-          <div className="w-full md:w-1/3">
-            <h2 className="text-2xl font-bold text-white mb-4">Your Company</h2>
-            <p className="text-gray-400">
-              Empowering you with tools to manage your projects effectively. We aim to make teamwork seamless and productive.
-            </p>
-          </div>
-
-          {/* Quick Links */}
-          <div className="w-full md:w-1/3">
-            <h3 className="text-xl font-semibold text-white mb-4">Quick Links</h3>
-            <ul className="text-gray-400 space-y-2">
-              <li><a href="/about" className="hover:text-white">About Us</a></li>
-              <li><a href="/features" className="hover:text-white">Features</a></li>
-              <li><a href="/pricing" className="hover:text-white">Pricing</a></li>
-              <li><a href="/faq" className="hover:text-white">FAQs</a></li>
-              <li><a href="/contact" className="hover:text-white">Contact</a></li>
-            </ul>
-          </div>
-
-          {/* Social Media & Contact */}
-          <div className="w-full md:w-1/3">
-            <h3 className="text-xl font-semibold text-white mb-4">Stay Connected</h3>
-            <p className="text-gray-400 mb-4">
-              Follow us on social media for the latest updates and features.
-            </p>
-            <div className="flex space-x-4 mb-4">
-              <a
-                href="https://facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white"
-              >
-                <i className="fab fa-facebook-f text-xl"></i>
-              </a>
-              <a
-                href="https://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white"
-              >
-                <i className="fab fa-twitter text-xl"></i>
-              </a>
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white"
-              >
-                <i className="fab fa-instagram text-xl"></i>
-              </a>
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white"
-              >
-                <i className="fab fa-linkedin-in text-xl"></i>
-              </a>
-            </div>
-            <p className="text-gray-400">
-              Email: <a href="mailto:support@yourcompany.com" className="hover:text-white">support@yourcompany.com</a>
-            </p>
-            <p className="text-gray-400">
-              Phone: <a href="tel:+1234567890" className="hover:text-white">+1 (234) 567-890</a>
-            </p>
-          </div>
+          <h2 className="text-2xl font-bold text-white">📚 Online Group Study</h2>
+          <p className="mt-2 text-gray-400">
+            A collaborative learning platform where friends can create, submit, 
+            and grade assignments together.
+          </p>
         </div>
 
-        {/* Copyright */}
-        <div className="mt-8 text-center text-gray-500 text-sm">
-          © {new Date().getFullYear()} Your Company. All rights reserved.
+        {/* Quick Links */}
+        <div>
+          <h3 className="text-xl font-semibold text-white">Quick Links</h3>
+          <ul className="mt-3 space-y-2">
+            <li>
+              <a href="#" className="hover:text-white transition duration-300">
+                About Us
+              </a>
+            </li>
+            <li>
+              <a href="#" className="hover:text-white transition duration-300">
+                Features
+              </a>
+            </li>
+            <li>
+              <a href="#" className="hover:text-white transition duration-300">
+                Contact
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        {/* Social Links */}
+        <div>
+          <h3 className="text-xl font-semibold text-white">Follow Us</h3>
+          <div className="mt-3 flex space-x-4">
+            <a href="#" className="hover:text-white transition duration-300">
+              🌐 Website
+            </a>
+            <a href="#" className="hover:text-white flex items-center gap-2  transition duration-300">
+            <FaTwitter /> Twitter
+            </a>
+            <a href="#" className="hover:text-white flex items-center gap-2 transition duration-300">
+            <FaFacebook /> Facebook
+            </a>
+          </div>
         </div>
       </div>
+
+      {/* Bottom Section */}
+      <div className="border-t border-gray-700 mt-6 pt-4 text-center text-gray-500">
+        <p>© {new Date().getFullYear()} Online Group Study. All rights reserved.</p>
+      </div>
     </footer>
-        </div>
-    );
+  );
 };
 
 export default Footer;
